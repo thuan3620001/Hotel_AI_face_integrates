@@ -1,0 +1,86 @@
+{% extends 'pages/login_register/login_regis_base.html' %}
+{% block title %} Login {% endblock %}
+
+
+{% block content %}
+
+    <!-- /Brand logo-->
+    <!-- Left Text-->
+    <div class="d-none d-lg-flex col-lg-8 align-items-center p-1">
+        <div class="w-100 d-lg-flex align-items-center justify-content-center px-5"><img class="img-fluid" src="../../../static/img/lightslider-img/cS-36.JPG" alt="Login V2" /></div>
+    </div>
+    <!-- /Left Text-->
+    <!-- Register-->
+    <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+            <h2 class="card-title fw-bold mb-1">Adventure starts here 🚀</h2>
+            <p class="card-text mb-2">Make your app management easy and fun!</p>
+            <!-- flash message -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <!-- alert -->
+                <div class="alert alert-{{ category }} alert-dismissible fade show text-center" role="alert">
+                    <strong>{{ message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>                    
+                {% endfor %}                   
+            {% endif %}
+            {% endwith %}
+            <form class="auth-register-form mt-2" action="{{ url_for('register') }}" method="POST">
+                <div class="mb-1">
+                    <label class="form-label" for="username">Username</label>
+                    <input class="form-control" id="username" type="text" name="username" placeholder="johndoe" aria-describedby="username" autofocus="" tabindex="1" />
+                </div>
+                <div class="mb-1">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" id="email" type="text" name="email" placeholder="john@example.com" aria-describedby="email" tabindex="2" />
+                </div>
+                <div class="mb-1">
+                    <label class="form-label" for="password">Password</label>
+                    <div class="input-group input-group-merge form-password-toggle">
+                        <input class="form-control form-control-merge" id="password" type="password" name="password" placeholder="············" aria-describedby="password" tabindex="3" /><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                    </div>
+                </div>
+                <div class="mb-1">
+                    <label class="form-label" for="level">Level</label>
+                    <select class="form-control form-select" name="level" id="level" aria-describedby="level" tabindex="2">
+                        <option value="">Select Level</option>
+                        <option value="Staff">Staff</option>
+                        <option value="Customer">Customer</option>
+                      </select>
+                </div>
+                <div class="mb-1">
+                    <label class="form-label" for="gender">Gender</label>
+                    <select class="form-control form-select" name="gender" id="gender" aria-describedby="gender" tabindex="2">
+                        <option value="female">female</option>
+                        <option value="male">male</option>
+                        <option value="other">other</option>
+                      </select>
+                </div>
+                <div class="mb-1">
+                    <label class="form-label" for="address">Address</label>
+                    <input class="form-control" id="address" type="text" name="address" placeholder="Your Address" aria-describedby="username" autofocus="" tabindex="1" />
+                </div>
+                <div class="mb-1">
+                    <label class="form-label" for="phone">Phone</label>
+                    <input class="form-control" id="phone" type="number" name="phone" placeholder="Your Phone Number" aria-describedby="username" autofocus="" tabindex="1" />
+                </div>
+                <div class="mb-1">
+                    <div class="form-check">
+                        <input class="form-check-input" id="register-privacy-policy" type="checkbox" tabindex="4" required/>
+                        <label class="form-check-label" for="register-privacy-policy">I agree to<a href="#">&nbsp;privacy policy & terms</a></label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100" tabindex="5">Sign up</button>
+            </form>
+            <p class="text-center mt-2"><span>Already have an account?</span><a href="{{ url_for('login') }}"><span>&nbsp;Sign in instead</span></a></p>
+            <div class="divider my-2">
+                <div class="divider-text">or</div>
+            </div>
+            <div class="auth-footer-btn d-flex justify-content-center"><a class="btn btn-facebook" href="#"><i data-feather="facebook"></i></a><a class="btn btn-twitter white" href="#"><i data-feather="twitter"></i></a><a class="btn btn-google" href="#"><i data-feather="mail"></i></a><a class="btn btn-github" href="#"><i data-feather="github"></i></a></div>
+        </div>
+    </div>
+    <!-- /Register-->
+
+{% endblock %}

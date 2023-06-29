@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Hotel Booking</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="../../static/img/favicon.ico" sizes="16x16">
+
+        <!-- fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Karla:700,400' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+
+        <!-- fontawesome -->
+		<link rel="stylesheet" href="../../static/css/font-awesome.css" />
+
+        <!-- bootstrap -->
+		<link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+
+        <!-- uikit -->
+        <link rel="stylesheet" href="../../static/css/uikit.min.css" />
+
+        <!-- animate -->
+        <link rel="stylesheet" href="../../static/css/animate.css" />
+        <link rel="stylesheet" href="../../static/css/datepicker.css" />
+        <!-- Owl carousel 2 css -->
+        <link rel="stylesheet" href="../../static/css/owl.carousel.css">
+        <!-- rev slider -->
+        <link rel="stylesheet" href="../../static/css/rev-slider/settings.css" />
+        <!-- lightslider -->
+        <link rel="stylesheet" href="../../static/css/lightslider.css">
+        <!-- Theme -->
+        <link rel="stylesheet" href="../../static/css/reset.css">
+        
+        <!-- custom css -->
+		<link rel="stylesheet" href="../../static/style.css" />
+        <!-- responsive -->
+		<link rel="stylesheet" href="../../static/css/responsive.css" />
+
+    </head>
+    <body id="room_detail_page">
+
+        
+        <!-- start header -->
+        <header class="header_area">
+
+            <!-- start main header -->
+            <div class="main_header_area">
+                <div class="container">
+                    <!-- start mainmenu & logo -->
+                    <div class="mainmenu">
+                        <div id="nav">
+                            <nav class="navbar navbar-default">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                  </button>
+                                  <div class="site_logo fix">
+                                      <a id="brand" class="clearfix navbar-brand" href="{{ url_for('home') }}"><img src="../../static/img/site-logo.png" alt="Trips"></a>
+                                      <!-- <div class="header_login floatleft">
+                                          <ul>
+                                              <li><a href="#">Login</a></li>
+                                              <li><a href="#">Register</a></li>
+                                          </ul>
+                                      </div>   -->         
+                                  </div>
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav">
+                                    {% if session['level'] == 'Admin' : %}
+                                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                                    <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                        role="button" aria-expanded="false">
+                                        Features
+                                        </a>
+                                        <ul id="menu2" class="dropdown-menu" role="menu">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('about') }}">About US</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('booking_home') }}">Booking</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('staff') }}">Our Staff</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('new') }}">News</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{ url_for('account') }}">Configulation</a></li>
+                    
+                                    {% else :%}
+                    
+                                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                                    <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                        role="button" aria-expanded="false">
+                                        Features
+                                        </a>
+                                        <ul id="menu2" class="dropdown-menu" role="menu">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('about') }}">About US</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('booking_home') }}">Booking</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('staff') }}">Our Staff</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{ url_for('new') }}">News</a></li>
+                                    <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
+                                    
+                                    {% endif %}
+                                    <li class="nav-item dropdown">
+                                        <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                        role="button" aria-expanded="false">
+                                        {{ session.username }}
+                                        </a>
+                                        <ul id="menu2" class="dropdown-menu" role="menu">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url_for('setting')}}">Setting</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url_for('logout')}}">Logout</a></li>
+                                        
+                                        </ul>
+                                    </li>
+                                    </ul>
+                                </div><!-- /.navbar-collapse -->
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- end mainmenu and logo -->
+                </div>
+            </div>
+            <!-- end main header -->
+
+        </header>
+        <!-- end header -->
+
+        <!-- start breadcrumb -->
+        <section class="breadcrumb_main_area margin-bottom-80">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="breadcrumb_main nice_title">
+                        <h2>Deluxe Room</h2>
+                        <!-- special offer start -->
+                        <div class="special_offer_main">
+                            <div class="container">
+                                <div class="special_offer_sub">
+                                    <img src="../../static/img/special-offer-yellow-main.png" alt="imf">
+                                </div>
+                            </div>
+                        </div>         
+                        <!-- end offer start -->
+                    </div>
+                </div>
+            </div>            
+        </section>
+        <!-- end breadcrunb -->
+        
+        <div class="room_detail_main margin-bottom-55">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-9">
+                        <div class="deluxe_room_detail">
+                            {% for detail in orderdata  %}
+                            <div class="section_title content-left margin-bottom-5">
+                                <h5>{{ detail[2] }} Detail <span class="price floatright">$ {{ detail[3] }}</span> <br> <span class="day floatright">/ night</span></h5>
+                            </div>
+                            <div class="section_content">
+                                <p>Checkout the latest deal</p>
+                                <div class="showcase">
+                                    <div class="section_description">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="clearfix">
+                                                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                                                    <!-- <ul id="vertical" class="gallery list-unstyled"> -->
+                                                        <li data-thumb="{{ url_for('static', filename='img/lightslider-img/' + detail[6] )}}" >
+                                                            <img alt="slider" src="{{ url_for('static', filename='img/lightslider-img/' + detail[6] )}}" />
+                                                        </li>
+                            {% endfor %}
+                                                        <li data-thumb="../../static/img/lightslider-img/cS-51.jpg">
+                                                            <img alt="slider" src="../../static/img/lightslider-img/cS-51.jpg" />
+                                                        </li>
+                                                        <li data-thumb="../../static/img/lightslider-img/cS-50.jpg"> 
+                                                            <img alt="slider" src="../../static/img/lightslider-img/cS-50.jpg" />
+                                                        </li>
+                                                        <li data-thumb="../../static/img/lightslider-img/cS-49.jpg"> 
+                                                            <img alt="slider" src="../../static/img/lightslider-img/cS-49.jpg" />
+                                                        </li>
+                                                        <li data-thumb="../../static/img/lightslider-img/cS-48.jpg"> 
+                                                            <img alt="slider" src="../../static/img/lightslider-img/cS-48.jpg" />
+                                                        </li>
+                                                        <li data-thumb="../../static/img/lightslider-img/cS-47.jpg"> 
+                                                            <img alt="slider" src="../../static/img/lightslider-img/cS-47.jpg" />
+                                                        </li>
+                                                        <li data-thumb="../../static/img/lightslider-img/cS-46.jpg"> 
+                                                            <img alt="slider" src="../../static/img/lightslider-img/cS-46.jpg" />
+                                                        </li>
+                                                        <li data-thumb="../../static/img/lightslider-img/cS-45.jpg"> 
+                                                            <img alt="slider" src="../../static/img/lightslider-img/cS-45.jpg" />
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="facilities_name clearfix margin-bottom-40 margin-top-65">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="section_title margin-bottom-35 padding-bottom-25 border-bottom-whitesmoke">
+                                                        <h5>Room Fecilities</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 no-padding-left">
+                                                    <ul class="single_facilities_name clearul">
+                                                        <li>
+                                                            <img src="../../static/img/home-facilities-icon-one.png" alt="">
+                                                            <p>Breakfast</p>
+                                                        </li>
+                                                        <li>
+                                                            <img src="../../static/img/home-facilities-icon-four.png" alt="">
+                                                            <p>Room service</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                    <ul class="single_facilities_name clearul">
+                                                        <li>
+                                                            <img src="../../static/img/home-facilities-icon-two.png" alt="">
+                                                            <p>Air conditioning</p>
+                                                        </li>
+                                                        <li>
+                                                            <img src="../../static/img/home-facilities-icon-ten.png" alt="">
+                                                            <p>GYM fecility</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                    <ul class="single_facilities_name clearul">
+                                                        <li>
+                                                            <img src="../../static/img/home-facilities-icon-eight.png" alt="">
+                                                            <p>Free Parking</p>
+                                                        </li>
+                                                        <li>
+                                                            <img src="../../static/img/home-facilities-icon-five.png" alt="">
+                                                            <p>TV LCD</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                    <ul class="single_facilities_name clearul">
+                                                        <li>
+                                                            <img src="../../static/img/home-facilities-icon-three.png" alt="">
+                                                            <p>Pet allowed</p>
+                                                        </li>
+                                                        <li>
+                                                            <img src="../../static/img/home-facilities-icon-twelve.png" alt="">
+                                                            <p>Wi-fi service</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="room_facilities_des padding-top-50 padding-bottom-50 border-top-whitesmoke">
+                                                    <p>
+                                                        At Hotel, we are aiming at being the most trusted hotel for the guests, owners, employees and community by providing consistent and personalized services. This is what gives meaning and values to our business and the working lives of ours.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% for room in orderdata  %}
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="booking_next_btn padding-top-30 margin-top-20 clearfix border-top-whitesmoke">
+                                                    <a href="{{ url_for('payment', id=room[0])}}" class="btn btn-warning btn-sm floatright">Next</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="row">
+                                            <!-- start welcome section -->
+                                            <section class="welcome_area">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="welcome">
+                                                        <div class="section_title content-left margin-top-50 margin-bottom-30">
+                                                            <h5>You may Also like</h5>
+                                                        </div>
+                                                        {% for room in orderdata  %}
+                                                        <div class="row">
+                                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                                <div class="single_room_wrapper clearfix">
+                                                                    <div class="room_wrapper">
+                                                                        <div class="room_media">
+                                                                            <a href="#"><img src="../../static/img/room-image-ten.jpg" alt=""></a>
+                                                                        </div>
+                                                                        <div class="room_title clearfix">
+                                                                            <div class="left_room_title floatleft">
+                                                                                <h6>Deluxe Room</h6>
+                                                                                <p>$180/ <span>night</span></p>
+                                                                            </div>
+                                                                            <div class="left_room_title floatright">
+                                                                                <a href="{{ url_for('payment', id=room[0])}}" class="btn">Book</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                                <div class="single_room_wrapper clearfix">
+                                                                    <div class="room_wrapper">
+                                                                        <div class="room_media">
+                                                                            <a href="#"><img src="../../static/img/room-image-twelve.jpg" alt=""></a>
+                                                                        </div>
+                                                                        <div class="room_title clearfix">
+                                                                            <div class="left_room_title floatleft">
+                                                                                <h6>Deluxe Room</h6>
+                                                                                <p>$180/ <span>night</span></p>
+                                                                            </div>
+                                                                            <div class="left_room_title floatright">
+                                                                                <a href="{{ url_for('payment', id=room[0])}}" class="btn">Book</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                                <div class="single_room_wrapper clearfix">
+                                                                    <div class="room_wrapper">
+                                                                        <div class="room_media">
+                                                                            <a href="#"><img src="../../static/img/room-image-thirteen.jpg" alt=""></a>
+                                                                        </div>
+                                                                        <div class="room_title clearfix">
+                                                                            <div class="left_room_title floatleft">
+                                                                                <h6>Deluxe Room</h6>
+                                                                                <p>$180/ <span>night</span></p>
+                                                                            </div>
+                                                                            <div class="left_room_title floatright">
+                                                                                <a href="{{ url_for('payment', id=room[0])}}" class="btn">Book</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <!-- end welcome section -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <!-- start client says slider -->
+                        <div class="col-lg-12 col-md-12 col-sm-4">
+                            <div class="customer_says margin-top-65">
+                                <div class="section_title margin-bottom-30">
+                                    <h5>Customer Review</h5>
+                                </div>
+                                <div class="section_description">
+                                    <div id="customer_says_slider" class="carousel slide" data-ride="carousel" data-pause="none">
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner" role="listbox">
+                                            <div class="item active">
+                                                <div class="single_says">
+                                                    <div class="customer_comment">
+                                                        <p>
+                                                            At Hotel, we are aiming at being the most trusted hotel for the guests, owners, employees and community by providing consistent and personalized services. This is what gives meaning and values to our business and the working lives of ours.
+                                                        </p>
+                                                    </div>
+                                                    <div class="customer_detail clearfix">
+                                                        <div class="customer_pic alignright-20">
+                                                            <a href="#"><img src="../../static/img/customer-says-one.png" alt=""></a>
+                                                        </div>
+                                                        <div class="customer_identity floatright">
+                                                            <h6>John Doe</h6>
+                                                            <p>www.john.com</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="single_says">
+                                                    <div class="customer_comment">
+                                                        <p>
+                                                            At Hotel, we are aiming at being the most trusted hotel for the guests, owners, employees and community by providing consistent and personalized services. This is what gives meaning and values to our business and the working lives of ours.
+                                                        </p>
+                                                    </div>
+                                                    <div class="customer_detail clearfix">
+                                                        <div class="customer_pic alignright-20">
+                                                            <a href="#"><img src="../../static/img/customer-says-one.png" alt=""></a>
+                                                        </div>
+                                                        <div class="customer_identity floatright">
+                                                            <h6>John Doe</h6>
+                                                            <p>www.john.com</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Controls -->
+                                        <a class="slider_says left" href="#customer_says_slider" role="button" data-slide="prev">
+                                            <i class="fa fa-angle-left"></i>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="slider_says right" href="#customer_says_slider" role="button" data-slide="next">
+                                            <i class="fa fa-angle-right"></i>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end client says slider -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- start contact us area -->
+        <section class="contact_us_area content-left">
+            <div class="container">
+                <div class="contact_us clearfix">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="call clearfix">
+                            <h6>Call Us</h6>
+                            <p>123 456 7890</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="email_us clearfix">
+                            <h6>Email us</h6>
+                            <p>info@hotelbooking.com</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="news_letter clearfix">
+                            <input type="text" placeholder="Enter ID  for News Letter">
+                            <a href="#" class="btn btn-blue">go</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="social_icons clearfix">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end contact us area -->
+
+        <!-- start footer -->
+        <footer class="footer_area">
+            <div class="container">
+                <div class="footer">
+                    <div class="footer_top padding-top-80 clearfix">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="footer_widget">
+                                <div class="footer_logo">
+                                    <a href="#"><img src="../../static/img/footer-logo-one.png" alt="img"></a>
+                                </div>
+                                <p>At Hotel, we are aiming at being the most trusted hotel for the guests, owners, employees and community by providing consistent and personalized services. This is what gives meaning and values to our business and the working lives of ours.</p>
+                                <ul>
+                                    <li>
+                                        <P><i class="fa fa-map-marker"></i>05 Hòa An 12, Hoà An, Cẩm Lệ, Đà Nẵng 550000, Việt Nam</P>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="row">
+                                <div class="footer_widget clearfix">
+                                    <h5 class="padding-left-15">Quick Links</h5>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <ul>
+                                            <li><a href="#">Rooms</a></li>
+                                            <li><a href="#">Food & Drinks</a></li>
+                                            <li><a href="#">Beach Venues</a></li>
+                                            <li><a href="#">Amenities</a></li>
+                                        </ul>  
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 sol-sm-6">
+                                        <ul>
+                                            <li><a href="#">Noordwijk</a></li>
+                                            <li><a href="#">Wellness</a></li>
+                                            <li><a href="#">Manifesto</a></li>
+                                            <li><a href="#">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="footer_widget">
+                                <h5>We Are Global</h5>
+                                <div class="footer_map">
+                                    <a href="#"><img src="../../static/img/footer-map-two.jpg" alt="img"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <div class="footer_copyright margin-tb-50 content-center">
+                                <p>© 2023 <a href="#">Hotelbooking</a>. All rights reserved</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+		
+		
+		
+        <!-- jquery library -->
+        <script src="../../static/js/vendor/jquery-1.11.2.min.js"></script>
+        <!-- bootstrap -->
+        <script src="../../static/js/bootstrap.min.js"></script>
+		
+        <!-- uikit -->
+        <script src="../../static/js/uikit.min.js"></script>
+        <!-- easing -->
+		<script src="../../static/js/jquery.easing.1.3.min.js"></script>
+        <script src="../../static/js/datepicker.js"></script>
+        <!-- scroll up -->
+        <script src="../../static/js/jquery.scrollUp.min.js"></script>
+        <!-- owlcarousel -->
+        <script src="../../static/js/owl.carousel.min.js"></script>
+        <!-- lightslider -->
+        <script src="../../static/js/lightslider.js"></script>
+        <!-- wow Animation -->
+        <script src="../../static/js/wow.min.js"></script>
+        <!--Activating WOW Animation only for modern browser-->
+        <!--[if !IE]><!-->
+        <script type="text/javascript">new WOW().init();</script>
+        <!-- my js -->
+        <script src="../../static/js/main.js"></script>
+		
+    </body>
+</html>

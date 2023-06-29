@@ -1,0 +1,87 @@
+{% extends 'share/admin/admin_base.html' %}
+{% block title %} data customer {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center mt-5 mb-3">
+        </div>
+    </div>
+    <div class="card">
+        <h5 class="card-header text-center">
+            Add Room
+        </h5>
+
+        <div class="row">
+            <div class="col">
+              <!-- flash message -->
+              {% with messages = get_flashed_messages() %}
+            {% if messages %}
+          
+            {% for message in messages %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Process Complete.</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+            {% endfor %}
+          
+            {% endif %}
+            {% endwith %}
+            </div>
+          </div>
+
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form action="{{ url_for('roominsert') }}" method="post">
+                        <div class="mb-3">
+                            <label for="nor" class="form-label">Number Of Room</label>
+                            <input type="number" class="form-control" id="nor" placeholder="Enter number of room" name="nor"
+                            autocomplete="off" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="roomtype" class="form-label">Room Type</label>
+                            <select class="form-select" name="roomtype" id="roomtype" required>
+                                <option value="">--Select Type--</option>
+                                <option value="Single Room">Single Room</option>
+                                <option value="Superior Room">Superior Room</option>
+                                <option value="Deluxe Room">Deluxe Room</option>
+                                <option value="Junior Suite Room">Junior Suite Room</option>
+                                <option value="Classic Room">Classic Room</option>
+                                <option value="Exe Room">Exe Room</option>
+                                <option value="Royal Room">Royal Room</option>
+                              </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="roomprice" class="form-label">Price</label>
+                            <input type="text" class="form-control" id="roomprice" placeholder="Enter room price $" name="roomprice"
+                            autocomplete="off" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="roomconfig" class="form-label">Room Config</label>
+                            <textarea class="form-control" id="roomconfig" rows="3" name="roomconfig" 
+                            autocomplete="off" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="img" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="img" placeholder="Enter img" name="img"
+                            autocomplete="off" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="img" class="form-label">Image Detail</label>
+                          <input type="file" class="form-control" id="img_detail" placeholder="Enter img" name="img_detail"
+                          autocomplete="off" required>
+                      </div>
+                        <div class="text-end">
+                          <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+{% endblock %}

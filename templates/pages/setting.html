@@ -1,0 +1,136 @@
+{% extends 'pages/login_register/login_regis_base.html' %}
+{% block title %} booking {% endblock %}
+
+
+{% block content %} 
+<section class="breadcrumb_main_area margin-bottom-80" style="margin-top: 200px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="breadcrumb_main nice_title text-center">
+                    <h2>User Information</h2>
+                    <!-- special offer start -->
+                    <div class="special_offer_main">
+                        <div class="container">
+                            <div class="special_offer_sub">
+                                <img src="static/img/anhdaidien.jpg">
+                            </div>
+                        </div>
+                    </div>         
+                    <!-- end offer start -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="container margin-bottom-80" id="booking">
+    
+                    <div class="row">
+                      <div class="col">
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                          
+                          {% for message in messages %}
+                          <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Thank you</strong> {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                          {% endfor %}
+                          
+                        {% endif %}
+                      {% endwith %}
+                  
+                      </div>
+                    </div>
+                  
+                    
+                  </div>
+                <div class="row">
+                    <!-- start Form Room Booking -->
+                    {% for user in orderdata %}
+            
+                    <div class="mb-3" >
+                      <form action="{{ url_for('settingupdate') }}" method="post">
+                        <input type="hidden" class="form-control" id="id" value="{{ user[0] }}" placeholder="Enter Your Name" name="id" autocomplete="off" required>
+                      <div class="mb-3" style="margin-top: 20px">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="username" value="{{ user[1] }}" placeholder="Enter Your Name" name="username" autocomplete="off" required>
+                      </div>
+                      <div class="mb-3" style="margin-top: 20px">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" value="{{ user[2] }}" placeholder="Your email" name="email" autocomplete="off" required>
+                      </div>
+                      
+                      <div class="mb-3" style="margin-top: 20px">
+                        <label for="info" class="form-label">Gender</label>
+                        <select class="form-select" aria-label="Default select example" name="gender">
+                            <option value="female">female</option>
+                            <option value="male">male</option>
+                            <option value="other">other</option>
+                            
+                          </select>
+                      </div>
+                      <div class="mb-3" style="margin-top: 20px">
+                        <label for="info" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" value="{{ user[6] }}" placeholder="Your Address" name="address" autocomplete="off" required>
+                      </div>
+                      <div class="mb-3" style="margin-top: 20px">
+                        <label for="info" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="phone" value="{{ user[7] }}" placeholder="Your mobile number" name="phone" autocomplete="off" required>
+                      </div>
+                      <div class="mb-3" style="margin-top: 20px">
+                        <label for="Level" class="form-label">Level: </label>
+                        <label  class="form-label">{{ user[4] }}</label>
+                        <input type="hidden" class="form-control" id="level" value="{{ user[4] }}" placeholder="Your mobile number" name="level" autocomplete="off" required>
+                      </div>
+                      <div class="mb-3" style="margin-top: 20px">
+                        <a type="button" class="btn btn-outline-primary" href="{{url_for('resetpassword')}}">Reset Password</a>
+                      </div>
+                    </div>
+                    {% endfor %}
+            
+                    
+                    
+                    <div class="mb-3" style="margin-top: 10px">
+                      <div class="d-grid gap-2" style="margin-top: 20px">
+                     <button type="submit" class="btn btn-success btn-lg btn-block" onclick="confirm('Are you Sure ?')">Order Confirmation</button></div>
+                    </div>
+                  </form>
+                    <!-- end Form Room Booking -->
+              
+                </div>
+            </div>
+        </div>
+    </div>            
+  </section>
+  
+  <!-- BEGIN: Vendor JS-->
+  <script src="../../../static/app-assets/vendors/js/vendors.min.js"></script>
+  <!-- BEGIN Vendor JS-->
+
+  <!-- BEGIN: Page Vendor JS-->
+  <script src="../../../static/app-assets/vendors/js/ui/jquery.sticky.js"></script>
+  <script src="../../../static/app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
+  <!-- END: Page Vendor JS-->
+
+  <!-- BEGIN: Theme JS-->
+  <script src="../../../static/app-assets/js/core/app-menu.js"></script>
+  <script src="../../../static/app-assets/js/core/app.js"></script>
+  <!-- END: Theme JS-->
+
+  <!-- BEGIN: Page JS-->
+  <script src="../../../app-assets/js/scripts/pages/auth-reset-password.js"></script>
+
+  <!-- BEGIN: Page JS-->
+  <script src="../../../static/app-assets/js/scripts/pages/auth-login.js"></script>
+  <!-- END: Page JS-->
+
+  <script>
+      $(window).on('load', function() {
+          if (feather) {
+              feather.replace({
+                  width: 14,
+                  height: 14
+              });
+          }
+      })
+  </script>
+{% endblock %} 

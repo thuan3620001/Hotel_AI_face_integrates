@@ -1,0 +1,22 @@
+{% extends 'share/admin/admin_base.html' %}
+{% block title %} temp gendataset {% endblock %}
+
+
+{% block content %} 
+    <section class="py-1" style="margin-left: 436px;">
+        <div class="row mt-5">
+            <div class="col-md-3 offset-lg-2 text-center">
+                <h3>Generate Dataset {{ prs }}</h3>
+                <hr>
+                <img src="{{ url_for('vidfeed_temp_dataset', nbr=prs) }}" width="100%" class="img-thumbnail">
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-3 offset-lg-2">
+                <a class="btn btn-warning btn-lg" href="{{ url_for('train_temp_classifier', nbr=prs) }}"> Training </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

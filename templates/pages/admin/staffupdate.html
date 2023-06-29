@@ -1,0 +1,52 @@
+<!-- Modal -->
+<div class="modal fade" id="updateModal{{row[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form action="{{ url_for('staffupdate')}}" method="post">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="staff_id" name="staff_id"
+                            value="{{ row[0] }}">
+                            <label for="nor" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your Name" name="name"
+                            autocomplete="off" value="{{ row[1] }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="roomprice" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email"
+                            autocomplete="off" value="{{ row[2] }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="roomconfig" class="form-label">Phone</label>
+                            <input type="number" class="form-control" id="phone" placeholder="Enter your phone" name="phone"
+                            autocomplete="off" value="{{ row[3] }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="img" class="form-label">Date Of Birth</label>
+                            <input type="date" class="form-control" id="dob" placeholder="Enter your birthday" name="dob"
+                            autocomplete="off" value="{{ row[4] }}" required>
+                        </div>
+                        <div class="mb-3">
+                        <label for="img" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="Enter your address" name="address"
+                            autocomplete="off" value="{{ row[5] }}" required>
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" onclick="confirm('Are you sure ?');">UPDATE</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,31 @@
+<!-- Modal -->
+<div class="modal fade" id="detailModal{{row[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">ROOM DETAIL</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h2>ROOM ID : {{ row[0] }}</h2>
+          <hr>
+          <pre>
+         Number Of Room     : {{ row [1] }}
+
+         Room Type          : {{ row [2] }}
+
+         Room Price         : {{ row [3] }}
+
+         Room Config        : {{ row [4] }}
+
+         Image              :    <img src="../static/img/{{ row[5] }}" height="100px" width="100px" alt="">
+
+         Status             : {{ row [6] }}
+        </pre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

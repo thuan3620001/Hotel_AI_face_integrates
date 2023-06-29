@@ -1,0 +1,72 @@
+<!-- Modal -->
+<div class="modal fade" id="updateModal{{row[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <div class="container">
+             <div class="row">
+                <div class="col">
+                    <form action="{{ url_for('accountupdate')}}" method="post">
+                    <div class="mb-3">
+                      <label for="name" class="form-label">Orderer Name</label>
+                      <input type="hidden" class="form-control" id="id" name="id" value="{{ row[0] }}">
+                      <input type="text" class="form-control" id="name" placeholder="Enter Your Name" name="name" value="{{ row[1] }}" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" placeholder="Your email" name="email" value="{{ row[2] }}" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="phone" class="form-label">No. Mobile</label>
+                      <input type="text" class="form-control" id="phone" placeholder="Your mobile number" name="phone" value="{{ row[3] }}"autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select" aria-label="Default select example" name="status">
+                          <option value="{{ row[9] }}">{{ row[9] }}</option>
+                          <option value="Confirm">Confirm</option>
+                          <option value="Booking">Booking</option>
+                          <option value="Leave">Leave</option>                          
+                        </select>
+                    </div>
+                  </div>
+          
+                  <div class="col">
+                    <div class="mb-3">
+                    <label for="type" class="form-label">Room Type</label>
+                    <select class="form-select" aria-label="Default select example" name="type">
+                      <option value="{{ row[4] }}">{{ row[4] }}</option>
+                      <option value="Single Room">Single Room</option>
+                      <option value="Superior Room">Superior Room</option>
+                      <option value="Deluxe Room">Deluxe Room</option>
+                      <option value="Junior Suite Room">Junior Suite Room</option>
+                    </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="checkin" class="form-label">Check In Date</label>
+                      <input type="date" class="form-control" id="checkin" name="checkin" value="{{ row[5] }}" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="checkout" class="form-label">Check Out Date</label>
+                      <input type="date" class="form-control" id="checkout" name="checkout" value="{{ row[6] }}" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="nor" class="form-label">Number of rooms</label>
+                      <input type="number" class="form-control" id="nor" name="nor" value="{{ row[7] }}" required>
+                    </div>                   
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" onclick="confirm('Are you sure ?');">UPDATE</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>

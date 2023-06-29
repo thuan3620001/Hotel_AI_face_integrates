@@ -1,0 +1,45 @@
+{% extends 'share/admin/admin_base.html' %}
+{% block title %} add temp {% endblock %}
+
+
+{% block content %}
+    <section class="py-1 mt-5" style="margin-left: 436px;">
+        <div class="row mt-5">
+            <div class="col-lg-8 offset-lg-2">
+                <h3 class="text-center">Add Personnel temp</h3>
+                <hr>
+                <form class="form" method="post" action="/addprsn_temp_submit">
+                    <div class="form-group row-lg-4">
+                        <label for="txtnbr" class="col-sm-2 col-form-label">Person Id</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="txtnbr" name="txtnbr" value={{ newnbr }} readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row-lg-4">
+                        <label for="txtname" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="txtname" name="txtname" required>
+                        </div>
+                    </div>
+                    <div class="form-group row-lg-4">
+                        <label for="optskill" class="col-sm-2 col-form-label">level</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="optskill" id="optskill">
+                                <option value="ADMIN">admin</option>
+                                <option value="STAFF">Staff</option>
+                                <option value="CUSTOMER">customer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row-lg-4" style="margin-top: 50px;">
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-8" style="margin-top: 50px; margin-left: 530px; margin-bottom: 50px;">
+                            <input type="submit" class="btn btn-primary btn-lg" value="Next" style="height: 58.44px;">
+                            <a href="/face-recon-temp-home" type="button" class="btn btn-warning btn-lg"><b>Back</b></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

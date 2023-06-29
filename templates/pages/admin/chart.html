@@ -1,0 +1,210 @@
+{% extends 'share/admin/admin_base.html' %}
+{% block title %} data room {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col text-center mt-5">
+      <h2>Revenue</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <!-- flash message -->
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Process Complete.</strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+
+      {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table" id="roomdata">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col"> Room</th>
+            <th scope="col">Cost</th>
+            <th scope="col">amount_user</th>
+            <th scope="col">created_at</th>
+            <th scope="col">end_at</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in orderdata %}
+          <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>{{row[5]}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
+      <div style="height: 400px; margin-left: 185px;"> 
+        <canvas id="myChart"></canvas>
+      </div>
+      <div style="height: 400px; margin-left: 185px;">
+        <!-- margin-left: 650px; padding-bottom: 600px; -->
+        <canvas id="myChart_longu"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      
+
+
+
+      <!-- <p><strong style="color:red;">Attention !!!</strong></br>
+                  Press the <strong style="color:green;">UPDATE</strong> button to make changes to the <strong style="color: goldenrod;">STATUS</strong></p> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-lg-6">
+      <script>
+
+        $.ajax({
+          url: "/doanhthu",
+          type: "GET",
+          success: function (data) {
+            // handle data returned from the server
+            console.log(data);
+
+            // extract room names and costs from the table
+            let rooms = [];
+            let costs = [];
+            $('#roomdata tbody tr').each(function () {
+              let room = $(this).find('td:nth-child(2)').text();
+              let cost = $(this).find('td:nth-child(3)').text();
+              
+              rooms.push(room);
+              costs.push(parseFloat(cost.replace('$', '')));
+            });
+
+            // update the chart data
+            let chartData = {
+              labels: rooms,
+              datasets: [{
+                label: 'Cost',
+                data: costs,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+              }]
+            };
+            myChart.data = chartData;
+            myChart.update();
+          },
+          error: function (xhr, status, error) {
+            // handle errors
+            console.log(error);
+          }
+        });
+
+        const ctx = document.getElementById('myChart');
+
+        let myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: [],
+            datasets: [{
+              label: 'Cost',
+              data: [],
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+        
+      </script>
+    </div>
+    <div class="col-md-6 col-lg-6">  
+      <script>
+
+        $.ajax({
+          url: "/doanhthu",
+          type: "GET",
+          success: function (data) {
+            // handle data returned from the server
+            console.log(data);
+
+            // extract room names and costs from the table
+            let rooms = [];
+            let amounts = [];
+            $('#roomdata tbody tr').each(function () {
+              let room = $(this).find('td:nth-child(2)').text();
+              let amount = $(this).find('td:nth-child(4)').text();
+              
+              rooms.push(room);
+              amounts.push(parseFloat(amount.replace('$', '')));
+            });
+
+            // update the chart data
+            let chartData = {
+              labels: rooms,
+              datasets: [{
+                label: 'Amount of user',
+                data: amounts,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+              }]
+            };
+            myChart_longu.data = chartData;
+            myChart_longu.update();
+          },
+          error: function (xhr, status, error) {
+            // handle errors
+            console.log(error);
+          }
+        });
+
+        const ctx_longu = document.getElementById('myChart_longu');
+
+        let myChart_longu = new Chart(ctx_longu, {
+          type: 'bar',
+          data: {
+            labels: [],
+            datasets: [{
+              label: 'Amount',
+              data: [],
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+        
+      </script>
+    </div>
+  </div>
+</div>
+{% endblock %}

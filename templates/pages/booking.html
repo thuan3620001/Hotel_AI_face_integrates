@@ -1,0 +1,87 @@
+{% extends 'share/service/masterservice.html' %} {% block title %} room {% endblock %} {% block content %}
+<section class="breadcrumb_main_area margin-bottom-80">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="breadcrumb_main nice_title">
+                <h2>Booking</h2>
+                <!-- special offer start -->
+                <div class="special_offer_main">
+                    <div class="container">
+                        <div class="special_offer_sub">
+                            <img src="img/special-offer-yellow-main.png" alt="imf">
+                        </div>
+                    </div>
+                </div>
+                <!-- end offer start -->
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container margin-bottom-80" id="booking">
+
+    <div class="row">
+        <div class="col">
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Thank you</strong> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- start Form Room Booking -->
+        <div class="mb-3">
+            <form action="/booking" method="post">
+                <div class="mb-3" style="margin-top: 20px">
+                    <label for="name" class="form-label">Orderer Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter Your Name" name="name" autocomplete="off" required>
+                </div>
+                <div class="mb-3" style="margin-top: 20px">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Your email" name="email" autocomplete="off" required>
+                </div>
+                <div class="mb-3" style="margin-top: 20px">
+                    <label for="phone" class="form-label">No. Mobile</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Your mobile number" name="phone" autocomplete="off" required>
+                </div>
+                <div class="mb-3" style="margin-top: 20px">
+                    <label for="info" class="form-label">Information</label>
+                    <textarea class="form-control" id="ket" rows="3" name="info"></textarea>
+                </div>
+        </div>
+
+        <div class="mb-3" style="margin-top: 20px">
+            <label for="type" class="form-label">Room Type</label>
+            <select class="form-select" aria-label="Default select example" name="type">
+          <option value=""></option>
+          <option value="Single Room">Single Room</option>
+          <option value="Superior Room">Superior Room</option>
+          <option value="Deluxe Room">Deluxe Room</option>
+          <option value="Junior Suite Room">Junior Suite Room</option>
+        </select>
+            <div class="mb-3" style="margin-top: 20px">
+                <label for="checkin" class="form-label">Check In Date</label>
+                <input type="date" class="form-control" id="checkin" name="checkin" min="{{ date.today().strftime('%Y-%m-%d') }}" required>
+            </div>
+            <div class="mb-3" style="margin-top: 20px">
+                <label for="checkout" class="form-label">Check Out Date</label>
+                <input type="date" class="form-control" id="checkout" name="checkout" min="{{ date.today().strftime('%Y-%m-%d') }}" required>
+            </div>
+            <div class="mb-3" style="margin-top: 20px">
+                <label for="nor" class="form-label">Number of rooms</label>
+                <input type="number" class="form-control" id="nor" name="nor" required>
+            </div>
+            <div class="d-grid gap-2" style="margin-top: 20px">
+                <button type="submit" class="btn btn-success btn-lg btn-block" onclick="confirm('Are you Sure ?')">Order Confirmation</button></div>
+        </div>
+        </form>
+        <!-- end Form Room Booking -->
+
+    </div>
+</div>
+
+
+{% endblock %}

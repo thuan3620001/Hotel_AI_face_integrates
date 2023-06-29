@@ -1,0 +1,120 @@
+<!-- start preloader -->
+<div id="loader-wrapper">
+  <div class="logo"><a href="#"><span>HOTEL</span>-Booking</a></div>
+  <div id="loader">
+  </div>
+</div>
+<!-- end preloader -->
+<!-- start header -->
+<header class="header_area">
+
+  <!-- start main header -->
+  <div class="main_header_area">
+    <div class="container">
+      <!-- start mainmenu & logo -->
+      <div class="mainmenu">
+        <div id="nav">
+          <nav class="navbar navbar-default">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <div class="site_logo fix">
+                <a id="brand" class="clearfix navbar-brand border-right-whitesmoke" href="{{ url_for('home') }}">
+                  <img src="../../static/img/site-logo.png" alt="Trips"></a>
+                {% if session['level'] == Null : %}   
+                <div class="header_login floatleft">
+                  <ul>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                  </ul>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                {% if session['level'] == 'Admin' : %}
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+                <li role="presentation" class="dropdown">
+                  <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    role="button" aria-expanded="false">
+                    Features
+                  </a>
+                  <ul id="menu2" class="dropdown-menu" role="menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('about') }}">About US</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('booking_home') }}">Booking</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('staff') }}">Our Staff</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('new') }}">News</a></li>
+                  </ul>
+                </li>
+                <li><a href="{{ url_for('account') }}">Configulation</a></li>
+
+                {% elif session['level'] == 'Staff' : %}
+
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+                <li role="presentation" class="dropdown">
+                  <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    role="button" aria-expanded="false">
+                    Features
+                  </a>
+                  <ul id="menu2" class="dropdown-menu" role="menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('about') }}">About US</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('booking_home') }}">Booking</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('staff') }}">Our Staff</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('new') }}">News</a></li>
+                  </ul>
+                </li>
+                <li><a href="{{ url_for('account') }}">Configulation</a></li>
+
+                {% else %}
+
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+                <li role="presentation" class="dropdown">
+                  <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    role="button" aria-expanded="false">
+                    Features
+                  </a>
+                  <ul id="menu2" class="dropdown-menu" role="menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('about') }}">About US</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('booking_home') }}">Booking</a></li>
+                    <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url_for('staff') }}">Our Staff</a></li> -->
+                  </ul>
+                </li>
+                <li><a href="{{ url_for('new') }}">News</a></li>
+                <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
+              
+                {% endif %}
+                <li class="nav-item dropdown">
+                  <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    role="button" aria-expanded="false">
+                    {{ session.username }}
+                  </a>
+                  <ul id="menu2" class="dropdown-menu" role="menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url_for('setting')}}">Setting</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url_for('logout')}}">Logout</a></li>
+                    
+                  </ul>
+                </li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </nav>
+        </div>
+      </div>
+      <!-- end mainmenu and logo -->
+    </div>
+  </div>
+  <!-- end main header -->
+
+</header>
+<!-- end header -->

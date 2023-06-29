@@ -1,0 +1,65 @@
+{% extends 'share/admin/admin_base.html' %}
+{% block title %} Bill Management {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+      <div class="col text-center mt-5">
+          <h2>Bill Management</h2>
+      </div>
+  </div>
+      <div class="row">
+        <div class="col">
+          <!-- flash message -->
+          {% with messages = get_flashed_messages() %}
+        {% if messages %}
+       
+        {% for message in messages %}
+       <div class="alert alert-success alert-dismissible fade show" role="alert">
+         <strong>Process Complete.</strong> {{ message }}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+        {% endfor %}
+       
+        {% endif %}
+        {% endwith %}
+        </div>
+      </div>
+      <div class="row">
+          <div class="col">
+              <table class="table" id="roomdata">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col" style="text-align: center;">Name Customer</th>
+                      <th scope="col" style="text-align: center;">Night Stayed</th>
+                      <th scope="col" style="text-align: center;">Tax</th>
+                      <th scope="col" style="text-align: center;">Total Price</th>
+                      <th scope="col" style="text-align: center;">Room type</th>
+                      <th scope="col" style="text-align: center;">ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for row in orderdata  %}
+                    <tr>
+                      <th scope="row">{{ loop.index }}</th>
+                      <td style="text-align: center;">{{row[1]}}</td>
+                      <td style="text-align: center;">{{row[2]}}</td>
+                      <td style="text-align: center;">{{row[3]}}</td>
+                      <td style="text-align: center;">{{row[4]}}</td>
+                      <td style="text-align: center;">{{row[5]}}</td>
+                      <td class="text-center">
+                          <a href="" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#updateModal{{row[0]}}" >Update</a>
+                          <a href="{{ url_for('roomdelete', id=row[0])}}" type="button" class="btn btn-outline-danger" onclick="confirm('Are you sure?')">Delete</a>
+                      </td>
+                    </tr>
+                      {% include "pages/admin/roomupdate.html" %}
+                      {% endfor %}
+                  </tbody>
+                </table>
+                <!-- <p><strong style="color:red;">Attention !!!</strong></br>
+                  Press the <strong style="color:green;">UPDATE</strong> button to make changes to the <strong style="color: goldenrod;">STATUS</strong></p> -->
+          </div>
+      </div>
+  </div>
+{% endblock %}

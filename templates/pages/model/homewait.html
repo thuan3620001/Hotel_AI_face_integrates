@@ -1,0 +1,47 @@
+{% extends 'share/admin/admin_base.html' %}
+{% block title %} index face temp {% endblock %}
+
+
+{% block content %} 
+<section class="py-1 mt-5" style="margin-left: 436px;">
+    <div class="row mt-5">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <h3>Face Recognition Temp</h3>
+            <hr>
+            <div class="row text-center">
+                <div class="col-lg-6">
+                    <a href="/waitting_page" type="button" class="btn btn-primary btn-lg"><b>Auto Delete and move data</b></a>
+                </div>
+                <div class="col-lg-6">
+                    <a href="/facerecontemphome" type="button" class="btn btn-warning btn-lg"><b>Back</b></a>
+                </div>
+            </div>
+
+            <br>
+            <table class="table text-center" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>Person Id</th>
+                        <th>Name</th>
+                        <th>Level</th>
+                        <th>Active</th>
+                        <th>Added</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in data %}
+                        <tr>
+                            <td>{{item[0]}}</td>
+                            <td>{{item[1]}}</td>
+                            <td>{{item[2]}}</td>
+                            <td>{{item[3]}}</td>
+                            <td>{{item[4]}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</section> 
+{% endblock %}

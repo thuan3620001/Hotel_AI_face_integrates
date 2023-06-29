@@ -1,0 +1,73 @@
+<!-- Modal -->
+<div class="modal fade" id="updateModal{{row[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <form action="{{ url_for('roomupdate')}}" method="post">
+                                <div class="mb-3">
+                                    <label for="nor" class="form-label">Number Of room</label>
+                                    <input type="hidden" class="form-control" id="roomid" name="roomid"
+                                        value="{{ row[0] }}">
+                                    <input type="text" class="form-control" id="nor" placeholder="Enter nor" name="nor"
+                                        value="{{ row[1] }}" autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="roomtype" class="form-label">Room Type</label>
+                                    <select class="form-select" aria-label="Default select example" name="roomtype">
+                                        <option value="{{ row[2] }}">{{ row[2] }}</option>
+                                        <option value="Single Room">Single Room</option>
+                                        <option value="Superior Room">Superior Room</option>
+                                        <option value="Deluxe Room">Deluxe Room</option>
+                                        <option value="Junior Suite Room">Junior Suite Room</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="roomprice" class="form-label">Room Price</label>
+                                    <input type="roomprice" class="form-control" id="roomprice"
+                                        placeholder="Your roomprice" name="roomprice" value="{{ row[3] }}"
+                                        autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="roomconfig" class="form-label">Room Config</label>
+                                    <input type="text" class="form-control" id="roomconfig"
+                                        placeholder="Your roomconfig" name="roomconfig" value="{{ row[4] }}"
+                                        autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="img" class="form-label">Image</label>
+                                    <input type="file" class="form-control" id="img" placeholder="Enter img" name="img"
+                                        value="{{ row[5] }}" autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="img" class="form-label">Image Detail</label>
+                                    <input type="file" class="form-control" id="img_detail" placeholder="Enter img" name="img_detail"
+                                        value="{{ row[6] }}" autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select class="form-select" aria-label="Default select example" name="status">
+                                        <option value="{{ row[8] }}">{{ row[8] }}</option>
+                                        <option value="Confirm">Confirm</option>
+                                        <option value="Booking">Booking</option>
+                                        <option value="Leave">Leave</option>
+                                    </select>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" onclick="confirm('Are you sure ?');">UPDATE</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

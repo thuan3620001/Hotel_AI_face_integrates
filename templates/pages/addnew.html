@@ -1,0 +1,79 @@
+{% extends 'share/service/masterservice.html' %}
+{% block title %} room {% endblock %}
+
+
+{% block content %}
+
+<section class="breadcrumb_main_area margin-bottom-80">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="breadcrumb_main nice_title">
+                <h2>Make Your Own News</h2>
+                <!-- special offer start -->
+                <div class="special_offer_main">
+                    <div class="container">
+                        <div class="special_offer_sub">
+                            <img src="img/special-offer-yellow-main.png" alt="imf">
+                        </div>
+                    </div>
+                </div>         
+                <!-- end offer start -->
+            </div>
+        </div>
+    </div>            
+  </section>
+  <div class="container margin-bottom-80" id="booking">
+    
+    <div class="row">
+      <div class="col">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          
+          {% for message in messages %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Thank you</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+          
+        {% endif %}
+      {% endwith %}
+  
+      </div>
+    </div>
+  
+    <div class="row">
+        <!-- start Form Room Booking -->
+        <div class="mb-3" >
+          <form action="/newinsert" method="post">
+          <div class="mb-3" style="margin-top: 20px">
+            <label for="tieude" class="form-label">Title</label>
+            <input type="text" class="form-control" id="tieude" placeholder="Enter Your Title Name" name="tieude" autocomplete="off" required>
+          </div>
+          <div class="mb-3" style="margin-top: 20px">
+            <label for="noidung" class="form-label">Content</label>
+            <textarea class="form-control" id="noidung" rows="3" name="noidung"></textarea>
+          </div>
+          <div class="mb-3" style="margin-top: 20px">
+            <label for="mota" class="form-label">Describe</label>
+            <textarea class="form-control" id="mota" rows="3" name="mota"></textarea>
+          </div>
+        </div>
+        <div class="mb-3" style="margin-top: 20px">
+            <label for="hinhanh" class="form-label">Picture</label>
+            <input type="file" class="form-control" id="hinhanh" placeholder="Enter img" name="hinhanh" autocomplete="off" required>
+        </div>
+        <div class="mb-3" style="margin-top: 20px">
+            <label for="nguoi" class="form-label">Author</label>
+            <input type="text" class="form-control" id="nguoi" placeholder="Enter Your Name" name="nguoi" autocomplete="off" required>
+        </div>
+          <div class="d-grid gap-2" style="margin-top: 20px">
+         <button type="submit" class="btn btn-success btn-lg btn-block" onclick="confirm('Are you Sure ?')">Post New</button></div>
+        </div>
+      </form>
+        <!-- end Form Room Booking -->
+  
+    </div>
+  </div>
+
+{% endblock %}

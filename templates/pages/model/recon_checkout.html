@@ -1,0 +1,43 @@
+<!-- Modal -->
+<div class="modal fade" id="updateModal{{item[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Face Recon Checkout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <form action="{{ url_for('update_checkout')}}" method="post">
+                                <div class="mb-3">
+                                    <input type="hidden" class="form-control" id="prs_nbr" name="prs_nbr"
+                                        value="{{item[0]}}">
+                                </div>                               
+                                <div class="mb-3">
+                                    <label for="prs_name" class="form-label">Enter Name Person Checked out</label>
+                                    <input type="text" class="form-control" id="prs_name"
+                                        placeholder="" name="prs_name" value="{{item[1]}}"
+                                        autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select class="form-select" aria-label="Default select example" name="status">
+                                        <option value="{{ item[5] }}">-----</option>
+                                        <option value="Confirm">Confirm</option>
+                                        <option value="Checkout">Checkout</option>
+                                    </select>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">UPDATE</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

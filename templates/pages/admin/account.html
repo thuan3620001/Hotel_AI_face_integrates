@@ -1,0 +1,79 @@
+{% extends 'share/admin/admin_base.html' %}
+{% block title %} data customer {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+  <div class="row">
+      <div class="col text-center mt-5">
+          <h2>Data Customer</h2>
+      </div>
+  </div>
+      <div class="row">
+        <div class="col">
+          <!-- flash message -->
+          {% with messages = get_flashed_messages() %}
+        {% if messages %}
+       
+        {% for message in messages %}
+       <div class="alert alert-success alert-dismissible fade show" role="alert">
+         <strong>Process Complete.</strong> {{ message }}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+        {% endfor %}
+       
+        {% endif %}
+        {% endwith %}
+        </div>
+      </div>
+      <div class="row">
+          <div class="col">
+              <table class="table" id="datacustomer">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Orderer Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Checkout</th>
+                      <th scope="col">Number of Room</th>
+                      <th scope="col" style="text-align: center;">ACTION</th>
+                      <th scope="col" style="text-align: center; color: red;">STATUS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for row in orderdata  %}
+                    <tr>
+                      <th scope="row">{{ loop.index }} </th>
+                      <td>{{row[1]}}</td>
+                      <td>{{row[2]}}</td>
+                      <td>{{row[3]}}</td>
+                      <td>{{row[4]}}</td>
+                      <td>{{row[6]}}</td>
+                      <td>{{row[7]}}</td>
+                      <td>
+                        <a href="" type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#detailModal{{row[0]}}">Detail</a>
+                        <a href="" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#updateModal{{row[0]}}" >Update</a>
+                        <a href="{{ url_for('accountdelete', id=row[0])}}" type="button" class="btn btn-outline-danger" onclick="confirm('Are you sure?')">Delete</a>
+                    </td>
+                      <td>
+                        {% if ( row[9] == "Booking" ): %}
+                        <a href="" type="button" class="btn btn-success">{{row[9]}}</a>
+                        {% elif ( row[9] == "Leave" ): %}
+                        <a href="" type="button" class="btn btn-danger">{{row[9]}}</a>
+                        {% else :%}
+                        <a href="" type="button" class="btn btn-warning">{{row[9]}}</a>
+                        {% endif %}
+                      </td>
+                    </tr>
+                      {% include "pages/admin/accountdetail.html" %}
+                      {% include "pages/admin/accountupdate.html" %}
+                      {% endfor %}
+                  </tbody>
+                </table>               
+          </div>
+      </div>
+  </div>
+
+{% endblock %}

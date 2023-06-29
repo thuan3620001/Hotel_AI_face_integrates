@@ -1,0 +1,58 @@
+<!-- Modal -->
+<div class="modal fade" id="updateModal{{row[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Facility Update</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <form action="{{ url_for('facilityupdate')}}" method="post">
+                                <div class="mb-3">
+                                    <label for="f_name" class="form-label">Name Facility</label>
+                                    <input type="hidden" class="form-control" id="f_id" name="f_id"
+                                        value="{{ row[0] }}">
+                                    <input type="text" class="form-control" id="f_name" placeholder="Enter f_name" name="f_name"
+                                        value="{{ row[1] }}" autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="f_info" class="form-label">Facility information</label>
+                                    <input type="text" class="form-control" id="f_info"
+                                        placeholder="Your f_info" name="f_info" value="{{ row[2] }}"
+                                        autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="f_price" class="form-label">Facility Price</label>
+                                    <input type="text" class="form-control" id="f_price"
+                                        placeholder="Your f_price" name="f_price" value="{{ row[3] }}"
+                                        autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="f_img" class="form-label">Image</label>
+                                    <input type="file" class="form-control" id="f_img" placeholder="Enter image" name="f_img"
+                                        value="{{ row[4] }}" autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="f_status" class="form-label">Status</label>
+                                    <select class="form-select" aria-label="Default select example" name="f_status">
+                                        <option value="{{ row[5] }}">{{ row[5] }}</option>
+                                        <option value="Available">Available</option>
+                                        <option value="Unavailable">Unavailable</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                    </select>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" onclick="confirm('Are you sure ?');">UPDATE</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
